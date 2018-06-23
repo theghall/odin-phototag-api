@@ -6,6 +6,7 @@
 
 .DS_store
 *swp
+/appbin
 
 # Ignore bundler config.
 /.bundle

@@ -8,6 +8,8 @@ gem 'rails', '5.2.0'
 # Use Puma as the app server
 gem 'puma', '3.11'
 
+gem 'bootsnap', '1.3.0', require: false
+
 # Database
 gem 'pg', '1.0.0'
 
