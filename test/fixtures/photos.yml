@@ -1,0 +1,6 @@
+star_trek:
+  name: "Bridge Crew"
+  desc: "The bridge crew of the original series"
+  difficulty: "easy"
+  category: "scifi"
+  image_filename: "bridgecrew.png"
