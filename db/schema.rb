@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_23_011616) do
+ActiveRecord::Schema.define(version: 2018_06_23_184132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "photo_id"
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_items_on_photo_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "item_id"
+    t.text "bottom_left_loc"
+    t.text "top_left_loc"
+    t.text "top_right_loc"
+    t.text "bottom_right_loc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_locations_on_item_id"
+  end
 
   create_table "photos", force: :cascade do |t|
     t.string "name"
@@ -28,4 +47,6 @@ ActiveRecord::Schema.define(version: 2018_06_23_011616) do
     t.index ["name"], name: "index_photos_on_name", unique: true
   end
 
+  add_foreign_key "items", "photos"
+  add_foreign_key "locations", "items"
 end

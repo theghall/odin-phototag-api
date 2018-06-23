@@ -1,4 +1,6 @@
 class Photo < ApplicationRecord
+  has_many :items
+
   validates :name, presence: true
   validates :desc, presence: true
   validates :difficulty, presence: true
