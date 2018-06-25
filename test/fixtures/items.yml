@@ -1,0 +1,8 @@
+kirk:
+  photo: star_trek
+  name: 'kirk'
+
+spock::
+  photo: star_trek
+  name: 'spock'
+

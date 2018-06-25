@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_23_184132) do
+ActiveRecord::Schema.define(version: 2018_06_23_192942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 2018_06_23_184132) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["photo_id"], name: "index_items_on_photo_id"
+  end
+
+  create_table "leaderboards", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.bigint "leaderboard_id"
+    t.text "difficulty"
+    t.float "best_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["leaderboard_id"], name: "index_levels_on_leaderboard_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -48,5 +63,6 @@ ActiveRecord::Schema.define(version: 2018_06_23_184132) do
   end
 
   add_foreign_key "items", "photos"
+  add_foreign_key "levels", "leaderboards"
   add_foreign_key "locations", "items"
 end

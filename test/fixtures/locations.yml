@@ -1,0 +1,20 @@
+kirk_1:
+  item: kirk
+  bottom_left_loc: '0,0'
+  top_left_loc: '0,2'
+  top_right_loc: '2,2'
+  bottom_right_loc: '2,0'
+
+kirk_2:
+  item: kirk
+  bottom_left_loc: '0,2'
+  top_left_loc: '0,4'
+  top_right_loc: '2,4'
+  bottom_right_loc: '2,2'
+
+spock_1:
+  item: spock
+  bottom_left_loc: '0,3'
+  top_left_loc: '3,2'
+  top_right_loc: '5,2'
+  bottom_right_loc: '5,0'
