@@ -2,7 +2,22 @@ kirk:
   photo: star_trek
   name: 'kirk'
 
-spock::
+spock:
   photo: star_trek
   name: 'spock'
 
+han:
+  photo: star_wars
+  name: 'han'
+
+chewie:
+  photo: star_wars
+  name: 'chewie'
+
+elsa:
+  photo: frozen
+  name: 'elsa'
+
+anna:
+  photo: frozen
+  name: 'anna'

@@ -1,20 +1,48 @@
 kirk_1:
   item: kirk
-  bottom_left_loc: '0,0'
-  top_left_loc: '0,2'
-  top_right_loc: '2,2'
-  bottom_right_loc: '2,0'
+  bottom_left_loc: 'l,2'
+  top_left_loc: '3,4'
+  top_right_loc: '5,6'
+  bottom_right_loc: '7,8'
 
 kirk_2:
   item: kirk
-  bottom_left_loc: '0,2'
-  top_left_loc: '0,4'
-  top_right_loc: '2,4'
-  bottom_right_loc: '2,2'
+  bottom_left_loc: '9,10'
+  top_left_loc: '11,12'
+  top_right_loc: '13,14'
+  bottom_right_loc: '15,16'
 
 spock_1:
   item: spock
-  bottom_left_loc: '0,3'
-  top_left_loc: '3,2'
-  top_right_loc: '5,2'
-  bottom_right_loc: '5,0'
+  bottom_left_loc: '17,18'
+  top_left_loc: '19,20'
+  top_right_loc: '21,22'
+  bottom_right_loc: '23,24'
+
+han_1:
+  item: han
+  bottom_left_loc: '25,26'
+  top_left_loc: '27,28'
+  top_right_loc: '29,30'
+  bottom_right_loc: '31,32'
+
+chewie_1:
+  item: chewie
+  bottom_left_loc: '33,34'
+  top_left_loc: '35,36'
+  top_right_loc: '37,38'
+  bottom_right_loc: '39,40'
+
+elsa_1:
+  item: elsa
+  bottom_left_loc: '41,42'
+  top_left_loc: '43,44'
+  top_right_loc: '45,46'
+  bottom_right_loc: '47,48'
+
+anna_1:
+  item: anna
+  bottom_left_loc: '49,50'
+  top_left_loc: '51,52'
+  top_right_loc: '53,54'
+  bottom_right_loc: '55,56'

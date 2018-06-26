@@ -4,3 +4,17 @@ star_trek:
   difficulty: "easy"
   category: "scifi"
   image_filename: "bridgecrew.png"
+
+star_trek:
+  name: "Han and Chewie"
+  desc: "Pic of Han and Chewie"
+  difficulty: "hard"
+  category: "scifi"
+  image_filename: "handandchewie.png"
+
+frozen:
+  name: "Elsa and Anna"
+  desc: "Pic of Elsa and Anna"
+  difficulty: "easy"
+  category: "disney"
+  image_filename: "elsaandanna.png"
