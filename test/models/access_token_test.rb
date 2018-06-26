@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class ApiKeyTest < ActiveSupport::TestCase
+class AccessTokenTest < ActiveSupport::TestCase
   def setup
-    @token = api_keys(:accesstoken1)
+    @token = access_tokens(:accesstoken1)
   end
 
   test "it should not permit blank tokens" do
-    @token.access_token = ''
+    @token.token = ''
     assert_not @token.valid?
   end
 
   test "it should not permit dupe tokens" do
     assert_raises(ActiveRecord::RecordNotUnique) do
-      ApiKey.create(access_token: @token.access_token)
+      AccessToken.create(token: @token.token)
     end
   end
 end
