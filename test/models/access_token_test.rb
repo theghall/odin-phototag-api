@@ -15,4 +15,12 @@ class AccessTokenTest < ActiveSupport::TestCase
       AccessToken.create(token: @token.token)
     end
   end
+
+  test "it should find valid token" do
+    assert_equal @token.token, AccessToken.find_token(@token.token).token
+  end
+
+  test "it shoud return nil for invalid token" do
+    assert_nil AccessToken.find_token('invalid')
+  end
 end
