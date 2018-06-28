@@ -4,6 +4,14 @@ module ApplicationHelper
   end
 
   def unauth_string
-    '{"code": "401", "message": "Invalid API Token"}'
+    {"code"  => "401", "message" => "Invalid API Token"}
+  end
+
+  def param_error(pme)
+    {"code" => "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[:bad_request]}", "errors" => "#{pme.errors.full_messages}"}
+  end
+
+  def missing_param(pme)
+    {"code" => "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[:bad_request]}", "message" => "missing params: #{pme.param}"}
   end
 end
