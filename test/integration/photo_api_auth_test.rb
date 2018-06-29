@@ -1,7 +1,7 @@
 require 'test_helper'
 
 
-class PhotoAPITest < ActionDispatch::IntegrationTest
+class PhotoAPIAuthTest < ActionDispatch::IntegrationTest
   def setup
     @valid_token = access_tokens(:accesstoken1)
   end
@@ -11,15 +11,14 @@ class PhotoAPITest < ActionDispatch::IntegrationTest
     assert_response(400)
     json_resp = JSON.parse(response.body)
     assert_equal "400", json_resp["code"]
-    assert_match /missing/i, json_resp["message"]
+    assert_match /apitoken/i, json_resp["errors"]
   end
 
   test "it should reject an API request with an empty token" do
     get api_v1_photos_url("APITOKEN" => "")
-    assert_response(400)
     json_resp = JSON.parse(response.body)
     assert_equal "400", json_resp["code"]
-    assert_match /missing/i, json_resp["message"]
+    assert_match /apitoken/i, json_resp["errors"]
   end
 
   test "it should reject an API request with a token of invalid length" do

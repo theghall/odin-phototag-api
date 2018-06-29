@@ -11,6 +11,10 @@ class API::V1::PhotosController < ApplicationController
     render json: missing_param(pme), status: :bad_request
   end
 
+  rescue_from(ActionController::UnpermittedParameters) do |pme|
+    render json: unpermitted_param(pme), status: :bad_request
+  end
+
   private
   
     def valid_params

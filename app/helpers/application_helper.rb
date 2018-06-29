@@ -3,6 +3,12 @@ module ApplicationHelper
     AccessToken.find_token(token) != nil
   end
 
+  def number_or_nil(string)
+    Integer(string || '')
+  rescue ArgumentError
+     nil
+  end
+
   def unauth_string
     {"code"  => "401", "message" => "Invalid API Token"}
   end
@@ -13,5 +19,9 @@ module ApplicationHelper
 
   def missing_param(pme)
     {"code" => "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[:bad_request]}", "message" => "missing params: #{pme.param}"}
+  end
+
+  def unpermitted_param(pme)
+    {"code" => "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[:bad_request]}", "errors" => "#{pme.message}"}
   end
 end
