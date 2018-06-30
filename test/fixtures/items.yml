@@ -1,23 +1,40 @@
-kirk:
-  photo: star_trek
-  name: 'kirk'
+a_item_1:
+  photo: aaaaa
+  name: 'a_item_1'
 
-spock:
-  photo: star_trek
-  name: 'spock'
+a_item_2:
+  photo: aaaaa
+  name: 'a_item_2'
 
-han:
-  photo: star_wars
-  name: 'han'
+b_item_1:
+  photo: bbbbb
+  name: 'b_item_1'
 
-chewie:
-  photo: star_wars
-  name: 'chewie'
+b_item_2:
+  photo: bbbbb
+  name: 'b_item_2'
 
-elsa:
-  photo: frozen
-  name: 'elsa'
+c_item_1:
+  photo: ccccc
+  name: 'c_item_1'
 
-anna:
-  photo: frozen
-  name: 'anna'
+c_item_2:
+  photo: ccccc
+  name: 'c_item_2'
+
+d_item_1:
+  photo: ddddd
+  name: 'd_item_1'
+
+d_item_2:
+  photo: ddddd
+  name: 'd_item_2'
+
+e_item_1:
+  photo: eeeee
+  name: 'e_item_1'
+
+e_item_2:
+  photo: eeeee
+  name: 'e_item_2'
+

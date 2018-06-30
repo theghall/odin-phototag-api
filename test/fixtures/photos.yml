@@ -1,20 +1,34 @@
-star_trek:
-  name: "Bridge Crew"
-  desc: "The bridge crew of the original series"
+aaaaa:
+  name: "aaaaa"
+  desc: "a test"
   difficulty: "easy"
-  category: "scifi"
-  image_filename: "bridgecrew.png"
+  category: "catone"
+  image_filename: "aaaaa.png"
 
-star_trek:
-  name: "Han and Chewie"
-  desc: "Pic of Han and Chewie"
+bbbbb:
+  name: "bbbbb"
+  desc: "b test"
   difficulty: "hard"
-  category: "scifi"
-  image_filename: "handandchewie.png"
+  category: "catone"
+  image_filename: "bbbbb.png"
 
-frozen:
-  name: "Elsa and Anna"
-  desc: "Pic of Elsa and Anna"
+ccccc:
+  name: "ccccc"
+  desc: "c test"
+  difficulty: "hard"
+  category: "catone"
+  image_filename: "ccccc.png"
+
+ddddd:
+  name: "ddddd"
+  desc: "d test"
   difficulty: "easy"
-  category: "disney"
-  image_filename: "elsaandanna.png"
+  category: "cattwo"
+  image_filename: "ddddd.png"
+
+eeeee:
+  name: "eeeee"
+  desc: "e test"
+  difficulty: "easy"
+  category: "cattwo"
+  image_filename: "ddddd.png"

@@ -3,6 +3,8 @@ class API::V1::PhotosController < ApplicationController
   before_action :valid_params, :authorized
 
   def index
+    @photos = Photo.query(query_params(params))
+    render json: @photos, include: ['items', 'items.locations']
   end
 
   ActionController::Parameters.action_on_unpermitted_parameters = :raise
@@ -28,5 +30,15 @@ class API::V1::PhotosController < ApplicationController
       if (!valid_token?(params["APITOKEN"]))
         render json: unauth_string, status: :unauthorized
       end
+    end
+
+    def query_params(params)
+      queries = %w[category difficulty number]
+      query_params = queries  & params.keys
+      query_hash = {}
+      query_params.each do |param|
+        query_hash[param] = params[param]
+      end
+      query_hash
     end
 end
