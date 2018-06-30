@@ -52,16 +52,16 @@ class PhotoTest < ActiveSupport::TestCase
   end
 
   test "it should return correct records when using a category search" do
-    assert_equal 3, Photo.query({"category" => "cat1"}).count
-    assert_equal "aaaaa", Photo.query({"category" => "cat1"}).first.name
-    assert_equal "bbbbb", Photo.query({"category" => "cat1"}).second.name
-    assert_equal "ccccc", Photo.query({"category" => "cat1"}).third.name
+    assert_equal 3, Photo.query({"category" => "catone"}).count
+    assert_equal "aaaaa", Photo.query({"category" => "catone"}).first.name
+    assert_equal "bbbbb", Photo.query({"category" => "catone"}).second.name
+    assert_equal "ccccc", Photo.query({"category" => "catone"}).third.name
   end
 
   test "it should return correct records when using category and number" do
-    assert_equal 2, Photo.query({"category" => "cat1", "number" => "2"}).count
-    assert_equal "aaaaa", Photo.query({"category" => "cat1", "number" => "2"}).first.name
-    assert_equal "bbbbb", Photo.query({"category" => "cat1", "number" => "2"}).second.name
+    assert_equal 2, Photo.query({"category" => "catone", "number" => "2"}).count
+    assert_equal "aaaaa", Photo.query({"category" => "catone", "number" => "2"}).first.name
+    assert_equal "bbbbb", Photo.query({"category" => "catone", "number" => "2"}).second.name
   end
 
   test "should return correct records when using difficulty" do
@@ -77,14 +77,14 @@ class PhotoTest < ActiveSupport::TestCase
   end
 
   test "should return correct records when using difficulty and category" do
-    assert_equal 2, Photo.query({"difficulty" => "easy", "category" => "cat2"}).count
-    assert_equal "ddddd", Photo.query({"difficulty" => "easy", "category" => "cat2"}).first.name
-    assert_equal "eeeee", Photo.query({"difficulty" => "easy", "category" => "cat2"}).second.name
+    assert_equal 2, Photo.query({"difficulty" => "easy", "category" => "cattwo"}).count
+    assert_equal "ddddd", Photo.query({"difficulty" => "easy", "category" => "cattwo"}).first.name
+    assert_equal "eeeee", Photo.query({"difficulty" => "easy", "category" => "cattwo"}).second.name
   end
 
   test "should return correct records when using difficulty and category and number" do
-    assert_equal 1, Photo.query({"difficulty" => "easy", "category" => "cat2", "number" => "1"}).count
-    assert_equal "ddddd", Photo.query({"difficulty" => "easy", "category" => "cat2"}).first.name
+    assert_equal 1, Photo.query({"difficulty" => "easy", "category" => "cattwo", "number" => "1"}).count
+    assert_equal "ddddd", Photo.query({"difficulty" => "easy", "category" => "cattwo"}).first.name
   end
 
 end

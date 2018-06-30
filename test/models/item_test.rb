@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ItemTest < ActiveSupport::TestCase
   def setup
-    @item = items(:kirk)
+    @item = items(:a_item_1)
   end
 
   test ("It should not permit a blank name") do

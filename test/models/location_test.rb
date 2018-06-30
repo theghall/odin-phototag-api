@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LocationTest < ActiveSupport::TestCase
   def setup
-    @loc1 = locations(:kirk_1)
+    @loc1 = locations(:a_item_1_loc)
   end
 
   test "it should not permit blanks for bottom_left_loc" do
