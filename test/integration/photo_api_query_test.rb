@@ -9,8 +9,8 @@ class PhotoAPIQueryTest < ActionDispatch::IntegrationTest
     get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "admin" => "admin")
     assert_response :bad_request
     json_resp = JSON.parse(response.body)
-    assert_equal "400", json_resp["code"]
-    assert_match /unpermitted/i, json_resp["errors"]
+    assert_equal "400", json_resp[0]["code"]
+    assert_match /unpermitted/i, json_resp[0]["errors"]
 
   end
 
@@ -23,18 +23,18 @@ class PhotoAPIQueryTest < ActionDispatch::IntegrationTest
     get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "number" => "")
     assert_response :bad_request
     json_resp = JSON.parse(response.body)
-    assert_equal "400", json_resp["code"]
-    refute_match /unpermitted/i, json_resp["errors"]
-    assert_match /number/i, json_resp["errors"]
+    assert_equal "400", json_resp[0]["code"]
+    refute_match /unpermitted/i, json_resp[0]["errors"]
+    assert_match /number/i, json_resp[0]["errors"]
   end
 
   test "it should reject an invalid  query using term 'number'" do
     get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "number" => "5A")
     assert_response :bad_request
     json_resp = JSON.parse(response.body)
-    assert_equal "400", json_resp["code"]
-    refute_match /unpermitted/i, json_resp["errors"]
-    assert_match /number/i, json_resp["errors"]
+    assert_equal "400", json_resp[0]["code"]
+    refute_match /unpermitted/i, json_resp[0]["errors"]
+    assert_match /number/i, json_resp[0]["errors"]
   end
 
   test "it should accept a valid query using term 'difficulty'" do
@@ -46,18 +46,18 @@ class PhotoAPIQueryTest < ActionDispatch::IntegrationTest
     get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "difficulty" => "")
     assert_response :bad_request
     json_resp = JSON.parse(response.body)
-    assert_equal "400", json_resp["code"]
-    refute_match /unpermitted/i, json_resp["errors"]
-    assert_match /difficulty/i, json_resp["errors"]
+    assert_equal "400", json_resp[0]["code"]
+    refute_match /unpermitted/i, json_resp[0]["errors"]
+    assert_match /difficulty/i, json_resp[0]["errors"]
   end
 
   test "it should reject an invalid  query using term 'difficulty'" do
     get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "difficulty" => "*easy(")
     assert_response :bad_request
     json_resp = JSON.parse(response.body)
-    assert_equal "400", json_resp["code"]
-    refute_match /unpermitted/i, json_resp["errors"]
-    assert_match /difficulty/i, json_resp["errors"]
+    assert_equal "400", json_resp[0]["code"]
+    refute_match /unpermitted/i, json_resp[0]["errors"]
+    assert_match /difficulty/i, json_resp[0]["errors"]
   end
 
   test "it should accept a valid query using term 'category'" do
@@ -69,18 +69,18 @@ class PhotoAPIQueryTest < ActionDispatch::IntegrationTest
     get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "category" => "")
     assert_response :bad_request
     json_resp = JSON.parse(response.body)
-    assert_equal "400", json_resp["code"]
-    refute_match /unpermitted/i, json_resp["errors"]
-    assert_match /category/i, json_resp["errors"]
+    assert_equal "400", json_resp[0]["code"]
+    refute_match /unpermitted/i, json_resp[0]["errors"]
+    assert_match /category/i, json_resp[0]["errors"]
   end
 
   test "it should reject an invalid  query using term 'category'" do
     get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "category" => "*catone(")
     assert_response :bad_request
     json_resp = JSON.parse(response.body)
-    assert_equal "400", json_resp["code"]
-    refute_match /unpermitted/i, json_resp["errors"]
-    assert_match /category/i, json_resp["errors"]
+    assert_equal "400", json_resp[0]["code"]
+    refute_match /unpermitted/i, json_resp[0]["errors"]
+    assert_match /category/i, json_resp[0]["errors"]
   end
 
   test "it should return all records" do
