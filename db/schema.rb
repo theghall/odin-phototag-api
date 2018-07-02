@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_26_212553) do
+ActiveRecord::Schema.define(version: 2018_07_01_171559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2018_06_26_212553) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["token"], name: "index_access_tokens_on_token", unique: true
+  end
+
+  create_table "challenges", force: :cascade do |t|
+    t.text "appid"
+    t.text "name"
+    t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_challenges_on_name"
   end
 
   create_table "items", force: :cascade do |t|
@@ -34,15 +43,10 @@ ActiveRecord::Schema.define(version: 2018_06_26_212553) do
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "levels", force: :cascade do |t|
-    t.bigint "leaderboard_id"
-    t.text "difficulty"
     t.float "best_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["leaderboard_id"], name: "index_levels_on_leaderboard_id"
+    t.bigint "challenge_id"
+    t.index ["challenge_id", "name"], name: "index_leaderboards_on_challenge_id_and_name", unique: true
+    t.index ["challenge_id"], name: "index_leaderboards_on_challenge_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -70,6 +74,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_212553) do
   end
 
   add_foreign_key "items", "photos"
-  add_foreign_key "levels", "leaderboards"
+  add_foreign_key "leaderboards", "challenges"
   add_foreign_key "locations", "items"
 end

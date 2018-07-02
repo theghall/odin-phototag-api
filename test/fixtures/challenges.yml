@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+challenge1:
+  appid: "287af9e4f3c25d2a"
+  name: "Challenge1"
+  desc: "A challenge"
+
+challenge2:
+  appid: "5a52174a9078beea"
+  name: "Challenge2"
+  desc: "A challenge"

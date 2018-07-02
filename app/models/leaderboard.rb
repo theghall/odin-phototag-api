@@ -1,5 +1,6 @@
 class Leaderboard < ApplicationRecord
-  has_many :levels
+  belongs_to :challenge
 
   validates :name, presence: true
+  validates :best_time, presence: true, numericality: true
 end

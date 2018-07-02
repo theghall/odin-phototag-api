@@ -1,2 +1,19 @@
-player1:
+player1_challenge1:
+  challenge: challenge1
   name: 'Troll'
+  best_time: 10
+
+player1_challenge2:
+  challenge: challenge2
+  name: 'Troll'
+  best_time: 12
+
+player2_challenge1:
+  challenge: challenge1
+  name: 'Jane'
+  best_time: 8 
+
+player2_challenge2:
+  challenge: challenge2
+  name: 'Janel'
+  best_time: 6
