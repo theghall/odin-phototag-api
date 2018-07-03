@@ -4,7 +4,6 @@ class LeaderboardAPIAuthTest < ActionDispatch::IntegrationTest
   def setup
     @valid_token = access_tokens(:accesstoken1)
     @appid = challenges(:challenge1).appid
-    @newappid = "566a991fe2fd8bba"
   end
 
   test "it should reject an API request with no APITOKEN query on a get" do
@@ -52,7 +51,7 @@ class LeaderboardAPIAuthTest < ActionDispatch::IntegrationTest
   end
 
   test "it should reject an API request with no APITOKEN query on a post" do
-    post api_v1_leaderboards_url("appid" => "#{@newappid}")
+    post api_v1_leaderboards_url("appid" => "#{@appid}"), params: { player: { name: "someone", challenge_time: "4.4" } }
     assert_response(400)
     json_resp = JSON.parse(response.body)
     assert_equal "400", json_resp[0]["code"]
@@ -60,14 +59,14 @@ class LeaderboardAPIAuthTest < ActionDispatch::IntegrationTest
   end
 
   test "it should reject an API request with an empty token on a post" do
-    post api_v1_leaderboards_url("APITOKEN" => "", "appid" => "#{@newappid}")
+    post api_v1_leaderboards_url("APITOKEN" => "", "appid" => "#{@appid}"), params: { player: { name: "someone", challenge_time: "4.4" } }
     json_resp = JSON.parse(response.body)
     assert_equal "400", json_resp[0]["code"]
     assert_match /apitoken/i, json_resp[0]["errors"]
   end
 
   test "it should reject an API request with a token of invalid length on a post" do
-    post api_v1_leaderboards_url("APITOKEN" => "1a1a1", "appid" => "#{@newappid}")
+    post api_v1_leaderboards_url("APITOKEN" => "1a1a1", "appid" => "#{@appid}"), params: { player: { name: "someone", challenge_time: "4.4" } }
     assert_response(400)
     json_resp = JSON.parse(response.body)
     assert_equal "400", json_resp[0]["code"]
@@ -75,7 +74,8 @@ class LeaderboardAPIAuthTest < ActionDispatch::IntegrationTest
   end
 
   test "it should reject an API request with a token of invalid format on a post" do
-    post api_v1_leaderboards_url("APITOKEN" => "1a1(1a1a1a1*1a1a1;1a1a1a1a1a1a1a", "appid" => "#{@newappid}")
+    post api_v1_leaderboards_url("APITOKEN" => "1a1(1a1a1a1*1a1a1;1a1a1a1a1a1a1a", "appid" => "#{@appid}"),
+      params: { player: { name: "someone", challenge_time: "4.4" } }
     assert_response(400)
     json_resp = JSON.parse(response.body)
     assert_equal "400", json_resp[0]["code"]
@@ -83,7 +83,8 @@ class LeaderboardAPIAuthTest < ActionDispatch::IntegrationTest
   end
 
   test "it should reject an API request with an unauthorized token on a post" do
-    post api_v1_leaderboards_url("APITOKEN" => "1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a", "appid" => "#{@newappid}")
+    post api_v1_leaderboards_url("APITOKEN" => "1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a", "appid" => "#{@appid}"),
+      params: { player: { name: "someone", challenge_time: "4.4" } }
     assert_response(401)
     json_resp = JSON.parse(response.body)
     assert_equal "401", json_resp[0]["code"]
@@ -91,7 +92,8 @@ class LeaderboardAPIAuthTest < ActionDispatch::IntegrationTest
   end
 
   test "it should accept a valid token on a post" do
-    post api_v1_leaderboards_url("APITOKEN" => "#{@valid_token.token}", "appid" => "#{@newappid}")
+    post api_v1_leaderboards_url("APITOKEN" => "#{@valid_token.token}", "appid" => "#{@appid}"),
+      params: { player: { name: "someone", challenge_time: "4.4" } }
     assert_response :success
   end
 

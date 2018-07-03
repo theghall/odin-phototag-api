@@ -59,7 +59,7 @@ module Validate
 
   end
 
-  class LeaderboardRequests < BaseRequests
+  class LeaderboardGetRequests < BaseRequests
     include ApplicationHelper, ActiveModel::Validations
 
     attr_accessor :appid
@@ -71,6 +71,35 @@ module Validate
       super(params)
       @appid = params[:appid]
       ActionController::Parameters.new(JSON.parse(params.to_json)).permit(:format, :APITOKEN, :appid)
+    end
+
+    private
+
+      def is_alphanumeric_appid
+        if !is_alphanumeric_token?(@appid)
+          errors.add(:appid, invalid_token())
+        end
+      end
+  end
+
+  class LeaderboardPostRequests < BaseRequests
+    include ApplicationHelper, ActiveModel::Validations
+
+    attr_accessor :appid, :name, :challenge_time
+
+    validate :is_alphanumeric_appid
+    validates :appid, presence: true, length: { is: 16 }
+    validates :name, presence: true, format: { with: /\A[a-z]+[0-9]*\z/i,  message: "can only be letters followed by numbers" }
+    validates :challenge_time, presence: true, numericality: true
+
+    def initialize(params={})
+      super(params)
+      @appid = params[:appid]
+      if !params[:player].nil?
+        @name = params[:player][:name]
+        @challenge_time = params[:player][:challenge_time]
+      end
+      ActionController::Parameters.new(JSON.parse(params.to_json)).require(:player).permit(:format, :APITOKEN, :appid, :name, :challenge_time)
     end
 
     private

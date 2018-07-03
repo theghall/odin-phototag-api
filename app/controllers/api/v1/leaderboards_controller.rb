@@ -1,6 +1,8 @@
 class API::V1::LeaderboardsController < ApplicationController
   include ApplicationHelper
-  before_action :valid_params, :authorized
+  before_action :valid_get_params, only: [:index]
+  before_action :valid_post_params, only: [:create]
+  before_action :authorized
 
   def index
     @leaderboard = Leaderboard.query(query_params(params))
@@ -13,7 +15,19 @@ class API::V1::LeaderboardsController < ApplicationController
   end
 
   def create
+    @challenge = Challenge.query(query_params(params))
 
+    if @challenge.nil?
+      render json: not_found(), status: :not_found
+    else
+      @leader = @challenge.leaderboards.build(post_params)
+
+      if @leader.save
+        head :created
+      else
+        head :internal_server_error
+      end
+    end
   end
 
   ActionController::Parameters.action_on_unpermitted_parameters = :raise
@@ -28,8 +42,19 @@ class API::V1::LeaderboardsController < ApplicationController
 
   private
 
-    def valid_params
-      api_request = Validate::LeaderboardRequests.new(params)
+    def post_params
+      params.require(:player).permit(:name, :challenge_time)
+    end
+
+    def valid_get_params
+      api_request = Validate::LeaderboardGetRequests.new(params)
+      if !api_request.valid?
+        render json: param_error(api_request), status: :bad_request
+      end
+    end
+
+    def valid_post_params
+      api_request = Validate::LeaderboardPostRequests.new(params)
       if !api_request.valid?
         render json: param_error(api_request), status: :bad_request
       end
