@@ -42,4 +42,11 @@ class LeaderboardTest < ActiveSupport::TestCase
     end
   end
 
+  test "it should return no records for an non-existent appid" do
+    assert_equal true, Leaderboard.query({"appid" => "823754cad3d8f29a"}).empty?
+  end
+
+  test "it should return records for an existent appid" do
+    assert_equal 2, Leaderboard.query({"appid" => "#{@challenge1.appid}"}).count
+  end
 end

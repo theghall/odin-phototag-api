@@ -9,6 +9,12 @@ module ApplicationHelper
      nil
   end
 
+  def float_or_nil(string)
+    Integer(string || '')
+  rescue ArgumentError
+     nil
+  end
+
   def unauth_string
     [{"code"  => "401", "errors" => "Invalid API Token"}]
   end
@@ -23,5 +29,9 @@ module ApplicationHelper
 
   def unpermitted_param(pme)
     [{"code" => "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[:bad_request]}", "errors" => "#{pme.message}"}]
+  end
+
+  def not_found
+    [{"code" => "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[:not_found]}", "errors" => "That record was not found"}]
   end
 end
