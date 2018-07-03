@@ -1,3 +1,3 @@
 class LeaderboardSerializer < ActiveModel::Serializer
-  attributes :name, :best_time
+  attributes :name, :challenge_time
 end

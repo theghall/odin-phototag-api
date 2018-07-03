@@ -52,7 +52,7 @@ class LeaderboardAPIQueryTestTest < ActionDispatch::IntegrationTest
     assert_response(200)
     json_resp = JSON.parse(response.body)
     refute_nil json_resp[0]["name"]
-    refute_nil json_resp[1]["best_time"]
+    refute_nil json_resp[1]["challenge_time"]
   end
 
 
