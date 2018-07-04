@@ -59,7 +59,7 @@ module Validate
 
   end
 
-  class LeaderboardGetRequests < BaseRequests
+  class LeaderboardBaseRequests < BaseRequests
     include ApplicationHelper, ActiveModel::Validations
 
     attr_accessor :appid
@@ -67,10 +67,9 @@ module Validate
     validate :is_alphanumeric_appid
     validates :appid, presence: true, length: { is: 16 }
 
-    def initialize(params, permitted_params)
+    def initialize(params)
       super(params)
       @appid = params[:appid]
-      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
 
     private
@@ -80,34 +79,33 @@ module Validate
           errors.add(:appid, invalid_token())
         end
       end
+
   end
 
-  class LeaderboardPostRequests < BaseRequests
+  class LeaderboardGetRequests < LeaderboardBaseRequests
     include ApplicationHelper, ActiveModel::Validations
 
-    attr_accessor :appid, :name, :challenge_time
+    def initialize(params, permitted_params)
+      super(params)
+      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
+    end
+  end
 
-    validate :is_alphanumeric_appid
-    validates :appid, presence: true, length: { is: 16 }
+  class LeaderboardPostRequests < LeaderboardBaseRequests
+    include ApplicationHelper, ActiveModel::Validations
+
+    attr_accessor :name, :challenge_time
+
     validates :name, presence: true, format: { with: /\A[a-z]+[0-9]*\z/i,  message: "can only be letters followed by numbers" }
     validates :challenge_time, presence: true, numericality: true
 
     def initialize(params, permitted_params)
       super(params)
-      @appid = params[:appid]
       # Cause ActionController::ParameterMissing to be raised
       player = params.fetch(:player)
       @name = player.fetch(:name)
       @challenge_time = player.fetch(:challenge_time)
       ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
-
-    private
-
-      def is_alphanumeric_appid
-        if !is_alphanumeric_token?(@appid)
-          errors.add(:appid, invalid_token())
-        end
-      end
   end
 end
