@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_014229) do
+ActiveRecord::Schema.define(version: 2018_07_04_110752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,10 @@ ActiveRecord::Schema.define(version: 2018_07_03_014229) do
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "bottom_left_loc"
+    t.text "top_left_loc"
+    t.text "top_right_loc"
+    t.text "bottom_right_loc"
     t.index ["photo_id"], name: "index_items_on_photo_id"
   end
 
@@ -47,17 +51,6 @@ ActiveRecord::Schema.define(version: 2018_07_03_014229) do
     t.bigint "challenge_id"
     t.index ["challenge_id", "name"], name: "index_leaderboards_on_challenge_id_and_name", unique: true
     t.index ["challenge_id"], name: "index_leaderboards_on_challenge_id"
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.bigint "item_id"
-    t.text "bottom_left_loc"
-    t.text "top_left_loc"
-    t.text "top_right_loc"
-    t.text "bottom_right_loc"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_locations_on_item_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -75,5 +68,4 @@ ActiveRecord::Schema.define(version: 2018_07_03_014229) do
 
   add_foreign_key "items", "photos"
   add_foreign_key "leaderboards", "challenges"
-  add_foreign_key "locations", "items"
 end

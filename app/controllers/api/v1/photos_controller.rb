@@ -8,7 +8,7 @@ class API::V1::PhotosController < ApplicationController
 
   def index
     @photos = Photo.query(query_params(photo_params))
-    render json: @photos, include: ['items', 'items.locations']
+    render json: @photos, include: ['items']
   end
 
   ActionController::Parameters.action_on_unpermitted_parameters = :raise

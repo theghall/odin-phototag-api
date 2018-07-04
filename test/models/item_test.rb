@@ -9,4 +9,24 @@ class ItemTest < ActiveSupport::TestCase
     @item.name = '';
     assert_not @item.valid?
   end
+
+  test "it should not permit blanks for bottom_left_loc" do
+    @item.bottom_left_loc =''
+    assert_not @item.valid?
+  end
+
+  test "it should not permit blanks for top_left_loc" do
+    @item.top_left_loc =''
+    assert_not @item.valid?
+  end
+
+  test "it should not permit blanks for top_right_loc" do
+    @item.top_right_loc = ''
+    assert_not @item.valid?
+  end
+
+  test "it should not permit blanks for bottom_right_loc" do
+    @item.bottom_right_loc = ''
+    assert_not @item.valid?
+  end
 end
