@@ -49,12 +49,12 @@ module Validate
               format: { with: /\A[a-z]+\z/i,  message: "must be all letters" },
               if: Proc.new { |o| o.params.include?(:category) }
 
-    def initialize(params={})
+    def initialize(params, permitted_params)
       super(params)
       @number = number_or_nil(params[:number])
       @difficulty = params[:difficulty]
       @category = params[:category]
-      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(:format, :APITOKEN, :number, :difficulty, :category)
+      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
 
   end
@@ -67,10 +67,10 @@ module Validate
     validate :is_alphanumeric_appid
     validates :appid, presence: true, length: { is: 16 }
 
-    def initialize(params={})
+    def initialize(params, permitted_params)
       super(params)
       @appid = params[:appid]
-      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(:format, :APITOKEN, :appid)
+      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
 
     private
@@ -92,14 +92,14 @@ module Validate
     validates :name, presence: true, format: { with: /\A[a-z]+[0-9]*\z/i,  message: "can only be letters followed by numbers" }
     validates :challenge_time, presence: true, numericality: true
 
-    def initialize(params={})
+    def initialize(params, permitted_params)
       super(params)
       @appid = params[:appid]
-      if !params[:player].nil?
-        @name = params[:player][:name]
-        @challenge_time = params[:player][:challenge_time]
-      end
-      ActionController::Parameters.new(JSON.parse(params.to_json)).require(:player).permit(:format, :APITOKEN, :appid, :name, :challenge_time)
+      # Cause ActionController::ParameterMissing to be raised
+      player = params.fetch(:player)
+      @name = player.fetch(:name)
+      @challenge_time = player.fetch(:challenge_time)
+      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
 
     private

@@ -4,8 +4,13 @@ class API::V1::LeaderboardsController < ApplicationController
   before_action :valid_post_params, only: [:create]
   before_action :authorized
 
+  def initialize
+    @permitted_get_params = [:format, :APITOKEN, :appid]
+    @permitted_post_params = [:format, :APITOKEN, :appid, player: [:name, :challenge_time]]
+  end
+
   def index
-    @leaderboard = Leaderboard.query(query_params(params))
+    @leaderboard = Leaderboard.query(query_params(leaderboard_get_params))
 
     if @leaderboard.empty?
       render json: not_found(), status: :not_found
@@ -15,12 +20,12 @@ class API::V1::LeaderboardsController < ApplicationController
   end
 
   def create
-    @challenge = Challenge.query(query_params(params))
+    @challenge = Challenge.query(query_params(leaderboard_post_params))
 
     if @challenge.nil?
       render json: not_found(), status: :not_found
     else
-      @leader = @challenge.leaderboards.build(post_params)
+      @leader = @challenge.leaderboards.build(leaderboard_post_params[:player])
 
       if @leader.save
         head :created
@@ -42,19 +47,23 @@ class API::V1::LeaderboardsController < ApplicationController
 
   private
 
-    def post_params
-      params.require(:player).permit(:name, :challenge_time)
+    def leaderboard_post_params
+      params.permit(@permitted_post_params)
+    end
+
+    def leaderboard_get_params
+      params.permit(@permitted_get_params)
     end
 
     def valid_get_params
-      api_request = Validate::LeaderboardGetRequests.new(params)
+      api_request = Validate::LeaderboardGetRequests.new(params, @permitted_get_params)
       if !api_request.valid?
         render json: param_error(api_request), status: :bad_request
       end
     end
 
     def valid_post_params
-      api_request = Validate::LeaderboardPostRequests.new(params)
+      api_request = Validate::LeaderboardPostRequests.new(params, @permitted_post_params)
       if !api_request.valid?
         render json: param_error(api_request), status: :bad_request
       end

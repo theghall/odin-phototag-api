@@ -35,13 +35,38 @@ class LeaderboardAPIPostTestTest < ActionDispatch::IntegrationTest
     assert_match /missing/i, json_resp[0]["errors"]
   end
 
-  test "it shoild reject a request with invalid params in player" do
+  test "it should reject a request with invalid params in player" do
     post api_v1_leaderboards_url("APITOKEN" => "#{@valid_token.token}", "appid" => "#{@appid}"),
           params: { player: { name: "someone", challenge_time: "4.4", admin: "admin" } }
     assert_response(400)
     json_resp = JSON.parse(response.body)
     assert_match /unpermitted/i, json_resp[0]["errors"]
   end
+
+  test "it should reject a request missing name in player" do
+    post api_v1_leaderboards_url("APITOKEN" => "#{@valid_token.token}", "appid" => "#{@appid}"),
+          params: { player: { challenge_time: "4.4" } }
+    assert_response(400)
+    json_resp = JSON.parse(response.body)
+    assert_match /missing/i, json_resp[0]["errors"]
+  end
+
+  test "it should reject a request missing challenge_time in player" do
+    post api_v1_leaderboards_url("APITOKEN" => "#{@valid_token.token}", "appid" => "#{@appid}"),
+          params: { player: { name: "Kerry" } }
+    assert_response(400)
+    json_resp = JSON.parse(response.body)
+    assert_match /missing/i, json_resp[0]["errors"]
+  end
+
+  test "it should reject a request with no params in player" do
+    post api_v1_leaderboards_url("APITOKEN" => "#{@valid_token.token}", "appid" => "#{@appid}"),
+          params: { player: { } }
+    assert_response(400)
+    json_resp = JSON.parse(response.body)
+    assert_match /missing/i, json_resp[0]["errors"]
+  end
+
   test "it should add a record for a valid appid" do
     num_recs = Leaderboard.count
 

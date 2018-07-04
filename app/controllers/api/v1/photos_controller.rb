@@ -1,9 +1,13 @@
 class API::V1::PhotosController < ApplicationController
   include ApplicationHelper
   before_action :valid_params, :authorized
+  
+  def initialize
+    @permitted_params = [:format, :APITOKEN, :category, :difficulty, :number]
+  end
 
   def index
-    @photos = Photo.query(query_params(params))
+    @photos = Photo.query(query_params(photo_params))
     render json: @photos, include: ['items', 'items.locations']
   end
 
@@ -19,8 +23,12 @@ class API::V1::PhotosController < ApplicationController
 
   private
   
+    def photo_params
+      params.permit(@permitted_params)
+    end
+
     def valid_params
-      api_request = Validate::PhotoRequests.new(params)
+      api_request = Validate::PhotoRequests.new(params, @permitted_params)
       if !api_request.valid?
         render json: param_error(api_request), status: :bad_request
       end
