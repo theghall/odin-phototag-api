@@ -30,4 +30,10 @@ class ChallengeTest < ActiveSupport::TestCase
   test "it should return a record with the correct id" do
     assert_equal @challenge.id, Challenge.get_id({"appid" => "#{@challenge.appid}"})
   end
+
+  test "it should not raise error when destroying a record with associated items" do
+    challenge = Challenge.first
+    assert_not challenge.leaderboards.empty?
+    challenge.destroy
+  end
 end

@@ -87,4 +87,10 @@ class PhotoTest < ActiveSupport::TestCase
     assert_equal "ddddd", Photo.query({"difficulty" => "easy", "category" => "cattwo"}).first.name
   end
 
+  test "it should not throw an error when deleting a row that has associated items" do
+    photo  = Photo.first
+    assert_not photo.items.empty?
+    photo.destroy
+  end
+
 end

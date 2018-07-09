@@ -1,5 +1,5 @@
 class Photo < ApplicationRecord
-  has_many :items
+  has_many :items, dependent: :destroy
   default_scope -> { order(name: :asc) }
 
   validates :name, presence: true

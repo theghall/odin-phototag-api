@@ -1,5 +1,5 @@
 class Challenge < ApplicationRecord
-  has_many :leaderboards
+  has_many :leaderboards, dependent: :destroy
 
   validates :name, presence: true
   validates :desc, presence: true
