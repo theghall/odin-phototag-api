@@ -5,6 +5,7 @@ class Challenge < ApplicationRecord
 
   validates :name, presence: true
   validates :desc, presence: true
+  validates :photo_name, presence: true
 
   def self.query(query_params)
     where(query_params).first

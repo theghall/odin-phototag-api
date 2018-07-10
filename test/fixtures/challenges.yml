@@ -5,9 +5,11 @@ challenge1:
   appid: "287af9e4f3c25d2a"
   name: "Challenge1"
   desc: "A challenge"
+  photo_name: "photo1.jpg"
 
 challenge2:
   access_token: accesstoken1
   appid: "5a52174a9078beea"
   name: "Challenge2"
   desc: "A challenge"
+  photo_name: "photo2.jpg"

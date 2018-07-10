@@ -62,6 +62,7 @@ module Validate
   class ChallengeRequests < BaseRequests
     def initialize(params, permitted_params)
       super(params)
+      ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
   end
 

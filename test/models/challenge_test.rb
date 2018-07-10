@@ -15,6 +15,11 @@ class ChallengeTest < ActiveSupport::TestCase
     assert_not @challenge.valid?
   end
 
+  test "it should not allow a blank photo_name" do
+    @challenge.photo_name = '';
+    assert_not @challenge.valid?
+  end
+
   test "it should return no record on non-existent appid" do
     assert_nil Challenge.query({"appid" => "1677246761aa79da"})
   end
