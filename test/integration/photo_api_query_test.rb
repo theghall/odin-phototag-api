@@ -3,6 +3,7 @@ require 'test_helper'
 class PhotoAPIQueryTest < ActionDispatch::IntegrationTest
   def setup
     @valid_token = access_tokens(:accesstoken1)
+    @photo = Photo.second
   end
 
   test "it should reject an invalid query term" do
@@ -157,6 +158,9 @@ class PhotoAPIQueryTest < ActionDispatch::IntegrationTest
     end
   end
 
-
-
+  test "it should return photo record given photo name" do
+    get api_v1_photos_url("APITOKEN" => "#{@valid_token.token}", "image_filename" => "#{@photo.image_filename}")
+    json_resp = JSON.parse(response.body)
+    assert_match @photo.image_filename, json_resp[0]["image_filename"]
+  end
 end

@@ -3,7 +3,7 @@ class API::V1::PhotosController < ApplicationController
   before_action :valid_params, :authorized
   
   def initialize
-    @permitted_params = [:format, :APITOKEN, :category, :difficulty, :number]
+    @permitted_params = [:format, :APITOKEN, :category, :difficulty, :number, :image_filename]
   end
 
   def index
@@ -41,7 +41,7 @@ class API::V1::PhotosController < ApplicationController
     end
 
     def query_params(params)
-      queries = %w[category difficulty number]
+      queries = %w[category difficulty number image_filename]
       query_params = queries  & params.keys
       query_hash = {}
       query_params.each do |param|

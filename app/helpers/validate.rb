@@ -35,7 +35,7 @@ module Validate
 
   class PhotoRequests < BaseRequests
     include ApplicationHelper, ActiveModel::Validations
-    attr_accessor :number, :difficulty, :category
+    attr_accessor :number, :difficulty, :category, :image_filename
 
     # Below validations are for optional parameters
     # TODO: find out how to make if: :optional_present?(param) work
@@ -48,12 +48,16 @@ module Validate
     validates :category, presence: true,
               format: { with: /\A[a-z]+\z/i,  message: "must be all letters" },
               if: Proc.new { |o| o.params.include?(:category) }
+    validates :image_filename, presence: true,
+              format: { with: /\A[a-z]+[0-9]*\.jpg|png\z/i, message: "invalid filename" },
+              if: Proc.new { |o| o.params.include?(:image_filename) }
 
     def initialize(params, permitted_params)
       super(params)
       @number = number_or_nil(params[:number])
       @difficulty = params[:difficulty]
       @category = params[:category]
+      @image_filename = params[:image_filename]
       ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
 
