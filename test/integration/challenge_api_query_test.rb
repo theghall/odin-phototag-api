@@ -23,6 +23,8 @@ class ChallengeAPIQueryTestTest < ActionDispatch::IntegrationTest
     assert_match @challenge.name, json_resp[0]["name"]
     assert_match @challenge.desc, json_resp[0]["desc"]
     assert_match @challenge.photo_name, json_resp[0]["photo_name"]
+    # meta_data can be null, but checking serializer here
+    assert_match @challenge.meta_data, json_resp[0]["meta_data"]
   end
 end
 

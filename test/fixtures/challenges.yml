@@ -6,6 +6,7 @@ challenge1:
   name: "Challenge1"
   desc: "A challenge"
   photo_name: "photo1.jpg"
+  meta_data: "meta1"
 
 challenge2:
   access_token: accesstoken1
@@ -13,3 +14,4 @@ challenge2:
   name: "Challenge2"
   desc: "A challenge"
   photo_name: "photo2.jpg"
+  meta_data: "meta2"
