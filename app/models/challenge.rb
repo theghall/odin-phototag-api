@@ -1,4 +1,6 @@
 class Challenge < ApplicationRecord
+  belongs_to :access_token
+
   has_many :leaderboards, dependent: :destroy
 
   validates :name, presence: true

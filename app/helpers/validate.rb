@@ -59,6 +59,12 @@ module Validate
 
   end
 
+  class ChallengeRequests < BaseRequests
+    def initialize(params, permitted_params)
+      super(params)
+    end
+  end
+
   class LeaderboardBaseRequests < BaseRequests
     include ApplicationHelper, ActiveModel::Validations
 
