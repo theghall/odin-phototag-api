@@ -1,7 +1,7 @@
 require 'test_helper'
 
 
-class PhotoAPIAuthTest < ActionDispatch::IntegrationTest
+class ChallengeAPIAuthTest < ActionDispatch::IntegrationTest
   def setup
     @valid_token = access_tokens(:accesstoken1)
   end

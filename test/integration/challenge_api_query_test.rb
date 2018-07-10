@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LeaderboardAPIQueryTestTest < ActionDispatch::IntegrationTest
+class ChallengeAPIQueryTestTest < ActionDispatch::IntegrationTest
   def setup
     @valid_token = access_tokens(:accesstoken1)
     @challenge = challenges(:challenge1)
