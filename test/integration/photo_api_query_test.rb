@@ -104,9 +104,7 @@ class PhotoAPIQueryTest < ActionDispatch::IntegrationTest
     assert_equal "catone", json_resp[0]["category"]
     assert_equal "aaaaa.png", json_resp[0]["image_filename"]
     assert_equal "a_item_1", json_resp[0]["items"][0]["name"]
-    assert_equal "1,2", json_resp[0]["items"][0]["bottom_left_loc"]
     assert_equal "1,3", json_resp[0]["items"][0]["top_left_loc"]
-    assert_equal "3,4", json_resp[0]["items"][0]["top_right_loc"]
     assert_equal "1,4", json_resp[0]["items"][0]["bottom_right_loc"]
     assert_equal "a_item_2", json_resp[0]["items"][1]["name"]
   end

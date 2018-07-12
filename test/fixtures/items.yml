@@ -1,80 +1,60 @@
 a_item_1:
   photo: aaaaa
   name: 'a_item_1'
-  bottom_left_loc: '1,2'
   top_left_loc: '1,3'
-  top_right_loc: '3,4'
   bottom_right_loc: '1,4'
 
 a_item_2:
   photo: aaaaa
   name: 'a_item_2'
-  bottom_left_loc: '3,2'
   top_left_loc: '3,3'
-  top_right_loc: '4,4'
   bottom_right_loc: '4,4'
 
 b_item_1:
   photo: bbbbb
   name: 'b_item_1'
-  bottom_left_loc: '1,2'
   top_left_loc: '1,3'
-  top_right_loc: '3,4'
   bottom_right_loc: '1,4'
 
 b_item_2:
   photo: bbbbb
   name: 'b_item_2'
-  bottom_left_loc: '3,2'
   top_left_loc: '3,3'
-  top_right_loc: '4,4'
   bottom_right_loc: '4,4'
 
 c_item_1:
   photo: ccccc
   name: 'c_item_1'
-  bottom_left_loc: '1,2'
   top_left_loc: '1,3'
-  top_right_loc: '3,4'
   bottom_right_loc: '1,4'
 
 c_item_2:
   photo: ccccc
   name: 'c_item_2'
-  bottom_left_loc: '3,2'
   top_left_loc: '3,3'
-  top_right_loc: '4,4'
   bottom_right_loc: '4,4'
 
 d_item_1:
   photo: ddddd
   name: 'd_item_1'
-  bottom_left_loc: '1,2'
   top_left_loc: '1,3'
-  top_right_loc: '3,4'
   bottom_right_loc: '1,4'
 
 d_item_2:
   photo: ddddd
   name: 'd_item_2'
-  bottom_left_loc: '3,2'
   top_left_loc: '3,3'
-  top_right_loc: '4,4'
   bottom_right_loc: '4,4'
 
 e_item_1:
   photo: eeeee
   name: 'e_item_1'
-  bottom_left_loc: '1,2'
   top_left_loc: '1,3'
-  top_right_loc: '3,4'
   bottom_right_loc: '1,4'
 
 e_item_2:
   photo: eeeee
   name: 'e_item_2'
-  bottom_left_loc: '3,2'
   top_left_loc: '3,3'
-  top_right_loc: '4,4'
   bottom_right_loc: '4,4'
 

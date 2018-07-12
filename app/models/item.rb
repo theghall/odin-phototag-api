@@ -3,8 +3,6 @@ class Item < ApplicationRecord
   has_many :locations
 
   validates :name, presence: true
-  validates :bottom_left_loc, presence: true
   validates :top_left_loc, presence: true
-  validates :top_right_loc, presence: true
   validates :bottom_right_loc, presence: true
 end
