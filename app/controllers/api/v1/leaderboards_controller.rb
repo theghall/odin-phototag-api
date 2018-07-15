@@ -6,7 +6,7 @@ class API::V1::LeaderboardsController < ApplicationController
 
   def initialize
     @permitted_get_params = [:format, :APITOKEN, :appid]
-    @permitted_post_params = [:format, :APITOKEN, :appid, player: [:name, :challenge_time]]
+    @permitted_post_params = [:format, :APITOKEN, :appid, leaderboard: [:name, :challenge_time]]
   end
 
   def index
@@ -25,7 +25,7 @@ class API::V1::LeaderboardsController < ApplicationController
     if @challenge.nil?
       render json: not_found(), status: :not_found
     else
-      @leader = @challenge.leaderboards.build(leaderboard_post_params[:player])
+      @leader = @challenge.leaderboards.build(leaderboard_post_params[:leaderboard])
 
       if @leader.save
         head :created

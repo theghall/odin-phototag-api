@@ -113,9 +113,9 @@ module Validate
     def initialize(params, permitted_params)
       super(params)
       # Cause ActionController::ParameterMissing to be raised
-      player = params.fetch(:player)
-      @name = player.fetch(:name)
-      @challenge_time = player.fetch(:challenge_time)
+      leader = params.fetch(:leaderboard)
+      @name = leader.fetch(:name)
+      @challenge_time = leader.fetch(:challenge_time)
       ActionController::Parameters.new(JSON.parse(params.to_json)).permit(permitted_params)
     end
   end
