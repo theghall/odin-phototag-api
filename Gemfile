@@ -8,6 +8,9 @@ gem 'rails', '5.2.0'
 # Use Puma as the app server
 gem 'puma', '3.11'
 
+# Allow cors
+gem 'rack-cors', '1.0.2', require: 'rack/cors'
+
 gem 'bootsnap', '1.3.0', require: false
 
 # Database
