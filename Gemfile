@@ -14,6 +14,8 @@ gem 'rack-cors', '1.0.2', require: 'rack/cors'
 gem 'bootsnap', '1.3.0', require: false
 # Because Heroku install fails otherwise
 gem 'turbolinks', '5.1.1'
+gem 'uglifier', '4.1.15'
+# end Heroku required gems
 
 # Database
 gem 'pg', '1.0.0'
