@@ -36,10 +36,8 @@ class LeaderboardTest < ActiveSupport::TestCase
     assert_equal num_leader_recs + 2, Leaderboard.count 
   end
 
-  test "it should not permit a duplicate player in a challenge" do
-    assert_raises ActiveRecord::RecordNotUnique do
-      @challenge1.leaderboards.build(name: @leader.name, challenge_time: 5).save
-    end
+  test "it should permit a duplicate player in a challenge" do
+    @challenge1.leaderboards.build(name: @leader.name, challenge_time: 5).save
   end
 
   test "it should return no records for an non-existent appid" do
