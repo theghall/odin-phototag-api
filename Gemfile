@@ -24,6 +24,8 @@ gem 'seedbank', '0.4.0'
 # Serializer
 gem 'active_model_serializers', '0.10.7'
 
+gem 'newrelic_rpm', '5.2.0.345'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
