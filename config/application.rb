@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'rack/throttle'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,5 +27,8 @@ module OdinPhototagApi
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
     end
+
+    config.middleware.use Rack::Throttle::Daily,  :max => 500
+    config.middleware.use Rack::Throttle::Minute, :max =>  20
   end
 end

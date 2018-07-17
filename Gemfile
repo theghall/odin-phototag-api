@@ -11,6 +11,8 @@ gem 'puma', '3.11'
 # Allow cors
 gem 'rack-cors', '1.0.2', require: 'rack/cors'
 
+gem 'rack-throttle', '0.5.0'
+
 gem 'bootsnap', '1.3.0', require: false
 # Because Heroku install fails otherwise
 gem 'turbolinks', '5.1.1'
