@@ -27,8 +27,5 @@ module OdinPhototagApi
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
     end
-
-    config.middleware.use Rack::Throttle::Daily,  :max => 500
-    config.middleware.use Rack::Throttle::Minute, :max =>  20
   end
 end
