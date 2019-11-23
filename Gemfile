@@ -4,12 +4,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.2'
+gem 'rails', '5.2.2.1'
 # Use Puma as the app server
 gem 'puma', '3.11'
 
 # Allow cors
-gem 'rack-cors', '1.0.2', require: 'rack/cors'
+gem 'rack-cors', '1.0.6', require: 'rack/cors'
 
 gem 'rack-throttle', '0.5.0'
 
